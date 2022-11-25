@@ -16,29 +16,44 @@
 			font-size: 1rem;
 			border-radius: 5px;
 			color: white;
-			margin-left: 45%;
+			margin-left: 40%;
 
 			
 		}
-		.new{
+		.new,#group,#radio{
 			padding: 0.2%;
 			font-size:1rem;
 			border-radius: 5px;
-			margin-left: 40%;
+			margin-left: 30%;
+		
 
 		}
 		.class{
-			margin:15%;
+			margin:5% 30% 5% 30%;
+			border: 3px solid black;
+
 		}
 		
 	</style>
 </head>
 <body>
+
 	<div class="class">
-		<h2 style="text-align: center;">LOGIN PAGE</h2>
+		<h2 style="text-align: center;">REGISTRATION PAGE</h2>
 		<p><input class="new" placeholder="enter name" id="username"/></p>
 		<p><input class="new" placeholder="enter password" id="password"></p>
-		<button  class="butt"onclick="start()">submit</button>
+		<p><input class="new" placeholder="enter Number" id="number"/></p>
+		<p><input class="new" placeholder="enter email" id="email"></p>
+		<select id="group" >
+			<option value="select the course">select the course</option>
+			<option value="mscs">mscs</option>
+			<option value="mecs">mecs</option>
+			<option value="mpcs">mpcs</option>
+		</select>
+		<p id="radio">
+		<input type="radio" id="male" value="male" name="gender" required />male
+		<input type="radio"  id="female" value="female" name="gender" required />female</p>
+		<p><button  class="butt"onclick="start()">submit</button></p>
    
 	</div>
 
@@ -47,12 +62,22 @@
 		function start(){
 			let username=document.getElementById("username").value
 			let password=document.getElementById("password").value
+			let number=document.getElementById("number").value
+			let email=document.getElementById("email").value
+			let dropdown=document.getElementById("group").value
+			let gmale=document.getElementById("male").checked
+			let gfemale=document.getElementById("female").checked
+			
+
+			console.log(username,password,dropdown,radio,number,email,gmale,gfemale)
+			if(gmale==true) var gender="male"
+			else var gender="female"
 		fetch("http://localhost:4000/newData",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json"
 			},
-			body:JSON.stringify({name:username,password:password})
+			body:JSON.stringify({name:username,password:password,group:dropdown,gender:gender,email:email,number:number,})
 
 		})
 		.then((res)=>{

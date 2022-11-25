@@ -16,8 +16,8 @@ app.get("/",(req,res)=>{
 	res.send("im new server")
 })
 app.post("/newData",(req,res)=>{
-	const {name,password}=req.body
-	console.log(name,password)
+	const {name,password,group,gender,number,email}=req.body
+	console.log(name,password,group,gender,number,email)
 	res.send("Data Added")
 })
 
