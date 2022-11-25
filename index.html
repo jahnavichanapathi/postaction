@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+		body{
+			background-image:url(https://www.shutterstock.com/image-illustration/watercolor-turquoise-gradient-background-texture-260nw-1469813222.jpg);
+			background-repeat: no-repeat;
+			background-size: 110%;
+		}
+		.butt{
+			background-color: black;
+			padding: 0.2%;
+			font-size: 1rem;
+			border-radius: 5px;
+			color: white;
+			margin-left: 45%;
+
+			
+		}
+		.new{
+			padding: 0.2%;
+			font-size:1rem;
+			border-radius: 5px;
+			margin-left: 40%;
+
+		}
+		.class{
+			margin:15%;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="class">
+		<h2 style="text-align: center;">LOGIN PAGE</h2>
+		<p><input class="new" placeholder="enter name" id="username"/></p>
+		<p><input class="new" placeholder="enter password" id="password"></p>
+		<button  class="butt"onclick="start()">submit</button>
+   
+	</div>
+
+	<script type="text/javascript">
+		
+		function start(){
+			let username=document.getElementById("username").value
+			let password=document.getElementById("password").value
+		fetch("http://localhost:4000/newData",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json"
+			},
+			body:JSON.stringify({name:username,password:password})
+
+		})
+		.then((res)=>{
+			console.log(res)
+			if(res.status===200)
+				alert("Data Added")
+		})
+		.catch((res)=>{
+			alert(err)
+		})
+	}
+	</script>
+	
+
+
+</body>
+</html>
